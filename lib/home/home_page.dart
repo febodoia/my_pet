@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:my_pet/app/my_app.dart';
+import 'package:my_pet/pages/perfil_pet.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -17,216 +18,145 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+
+  
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _index = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
 
 
   @override
   Widget build(BuildContext context) {
  
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-                accountName: Text("Fernando"),
-                accountEmail: Text("fernandobodoia@gmail.com"),
-                decoration: BoxDecoration(
-                  color: Colors.green
-                ),
 
-                currentAccountPicture: CircleAvatar(
-                  radius: 30.0,
-                  backgroundImage: AssetImage('assets/images/user.jpg'),
-                  backgroundColor: Colors.transparent,
-                ),
-              ),
+      drawer: MyDrawer(),
 
-            new ListTile(
-              leading: new Icon(Icons.home),
-              title: new Text("Home"),
-
-              onTap: () {
-                Navigator.pop(context);
-                //Navigator.of(context).pushNamed(PHOTO_CONTAINER_SCREEN);
-            },
-          ),
-
-          new ListTile(
-              leading: new Icon(Icons.photo),
-              title: new Text("Meus Pets"),
-
-              onTap: () {
-                Navigator.pop(context);
-                //Navigator.of(context).pushNamed(PHOTO_CONTAINER_SCREEN);
-            },
-          ),
-
-          new ListTile(
-              leading: new Icon(Icons.person),
-              title: new Text("Perfil"),
-
-              onTap: () {
-                Navigator.pop(context);
-                //Navigator.of(context).pushNamed(PHOTO_CONTAINER_SCREEN);
-            },
-          ),
-
-              new ListTile(
-                  leading: new Icon(Icons.exit_to_app),
-                  title: new Text("Sair"),
-                  
-
-                  onTap: () {
-                    Navigator.pop(context);
-                    //Navigator.of(context).pushNamed(PHOTO_CONTAINER_SCREEN);
-                },
-              ),
-            ],
-          
-
-              
-        
-        
-        ),
-      ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index){
-          setState(() {
-            _index = index;
-          });
-        },
-        currentIndex: _index,
-        items: [
-            BottomNavigationBarItem(
-            icon: Icon(Icons.assistant),
-            title: Text('Home'),
-            activeIcon: Icon(Icons.assistant, color: Colors.lightGreen)
-            ),
-
-            BottomNavigationBarItem(
-            icon: Icon(Icons.assistant),
-            title: Text('Meus Pets'),
-            activeIcon: Icon(Icons.assistant, color: Colors.lightGreen)
-            ),
-            
-            BottomNavigationBarItem(
-            icon: Icon(Icons.assistant),
-            title: Text('Perfil'),
-            activeIcon: Icon(Icons.assistant, color: Colors.lightGreen)
-            ),
-
-            
-        ],
-
-        
-        
-      ),
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-      ),
+      //menu inferior
+      bottomNavigationBar: BottomNavigationApp(),
+      appBar: MyAppBar(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+          
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /*Text(
-              'Home',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),*/
-
+            
             new Card(
+            elevation: 4.0,
+            
+            child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 7.0),
             child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              
               children: <Widget>[
-                Row(children: <Widget>[
-                new Image.network('https://image.flaticon.com/icons/png/512/91/91544.png', height: 100,
-                        fit:BoxFit.fill),
-                Text('     ' 
+                Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                
+                Column(children: [
+                CircleAvatar(
+                  radius: 45.0,
+                  backgroundImage: AssetImage('assets/images/dog1.jpg'),
                   
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text('Jack'),
+                ),
+                ],
+                ),
 
-                new Image.network('https://image.flaticon.com/icons/png/512/91/91544.png', height: 100,
-                        fit:BoxFit.fill),
-                Text('     ' 
+                Column(children: [
+                CircleAvatar(
+                  radius: 45.0,
+                  backgroundImage: AssetImage('assets/images/dog2.jpg'),
                   
                 ),
-                new Image.network('https://image.flaticon.com/icons/png/512/91/91544.png', height: 100,
-                        fit:BoxFit.fill),
-                Text('     ' 
+                
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text('Zeus'),
+                ),
+                ],
                 ),
 
-                new Image.network('https://image.flaticon.com/icons/png/512/91/91544.png', height: 100,
-                        fit:BoxFit.fill)
+
+                Column(children: [
+                CircleAvatar(
+                  radius: 45.0,
+                  backgroundImage: AssetImage('assets/images/dog3.jpg'),
+                  
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text('Nina'),
+                ),
+                ],
+                ),
+
+                Column(children: [
+                CircleAvatar(
+                  radius: 45.0,
+                  backgroundImage: AssetImage('assets/images/dog4.jpg'),
+                  
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text('Bud'),
+                ),
+                ],
+                ),
+
                 ],)
 
                 
                 
                ],
             ),
+            ),
           ),
 
           new Card(
+            elevation: 4.0,
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text('Notícia 1',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Notícia 1',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  ),
                 ),
-                Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'),
+                ),
               ],
             ),
           ),
 
           new Card(
+            elevation: 4.0,
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text('Notícia 2',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Notícia 2',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center
+                  ),
                 ),
-                Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'),
+                ),
               ],
             ),
           )
@@ -244,11 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
           
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
         backgroundColor: Colors.lightGreen,
         tooltip: 'Ler QR Code',
         child: Icon(Icons.camera_alt),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  void navigateToPerfilPet(BuildContext context) {}
 }
