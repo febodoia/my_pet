@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_pet/home/home_page.dart';
 import 'package:my_pet/pages/perfil_pet.dart';
 import 'package:my_pet/pages/perfil_user.dart';
+import 'package:my_pet/qrcode/scan.dart' as scanner;
+
+import '../qrcode/qrcode_page.dart';
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -12,39 +15,62 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Widget page;
   Widget floating_button;
-
+  TextEditingController _outputController;
 
   @override
   void initState() {
     super.initState();
     page = new MyHomePage(title: 'MyPet');
+    this._outputController = new TextEditingController();
+  }
+
+  //scan qr code
+  Future _scan() async {
+    String barcode = await scanner.scan();
+    if (barcode == null) {
+      print('nothing return.');
+    } else {
+      this._outputController.text = barcode;
+      print('Texto do QR Code é: $barcode');
+    }
   }
 
   void case0() {
     setState(() {
       page = new MyHomePage();
+
       floating_button = FloatingActionButton(
         backgroundColor: '48B174'.toColor(),
         tooltip: 'Ler QR Code',
-        onPressed: () {  },
+        onPressed: () => _scan(),
         child: Icon(Icons.camera_alt),
       );
     });
   }
+
   void case1() {
     setState(() {
       page = new PerfilPet();
       floating_button = FloatingActionButton(
         backgroundColor: '48B174'.toColor(),
         tooltip: 'Adicionar',
-        onPressed: () {  },
+        onPressed: () {},
         child: Icon(Icons.add),
       );
     });
   }
+
   void case2() {
     setState(() {
       page = new PerfilUser();
+      floating_button = null;
+    });
+  }
+
+  //tela após ler qr code
+  void case3() {
+    setState(() {
+      page = new QrCode();
       floating_button = null;
     });
   }
@@ -75,10 +101,11 @@ class _MyAppState extends State<MyApp> {
 
   Widget firstConfig(Widget page) {
     return new Scaffold(
-      drawer: MyDrawer(case0: case0, case1: case1, case2: case2),
+      drawer: MyDrawer(case0: case0, case1: case1, case2: case2, case3: case3),
 
       //menu inferior
-      bottomNavigationBar: BottomNavigationApp(case0: case0, case1: case1, case2: case2),
+      bottomNavigationBar:
+          BottomNavigationApp(case0: case0, case1: case1, case2: case2),
       // bottomNavigationBar: Container(
       //   height: 100,
       //   child: FlareActor('assets/navbar.flr', fit: BoxFit.contain)
@@ -122,20 +149,22 @@ class MyDrawer extends StatefulWidget {
   final Function case0;
   final Function case1;
   final Function case2;
+  final Function case3;
 
-  MyDrawer({this.case0, this.case1, this.case2});
+  MyDrawer({this.case0, this.case1, this.case2, this.case3});
 
   @override
-  _MyDrawerState createState() => _MyDrawerState(case0: case0, case1: case1, case2: case2);
+  _MyDrawerState createState() =>
+      _MyDrawerState(case0: case0, case1: case1, case2: case2, case3: case3);
 }
 
 class _MyDrawerState extends State<MyDrawer> {
   final Function case0;
   final Function case1;
   final Function case2;
+  final Function case3;
 
-
-  _MyDrawerState({this.case1, this.case2, this.case0});
+  _MyDrawerState({this.case1, this.case2, this.case0, this.case3});
 
   @override
   Widget build(BuildContext context) {
@@ -184,6 +213,14 @@ class _MyDrawerState extends State<MyDrawer> {
               //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PerfilPet()), (Route<dynamic> route) => false);
             },
           ),
+          new ListTile(
+            leading: new Icon(Icons.camera_alt),
+            title: new Text("QR Code"),
+            onTap: () {
+              Navigator.pop(context);
+              case3();
+            },
+          ),
         ],
       ),
     );
@@ -211,7 +248,6 @@ class BottomNavigationAppState extends State<BottomNavigationApp> {
 
   @override
   Widget build(BuildContext context) {
-    
     return BottomNavigationBar(
       onTap: (int index) {
         setState(() {

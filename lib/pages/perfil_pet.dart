@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_pet/pets/PetList.dart';
 
+import '../qrcode/qrcode_page.dart';
+
 class PerfilPet extends StatefulWidget {
   @override
   PerfilPetState createState() => PerfilPetState();
