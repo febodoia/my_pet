@@ -1,0 +1,1 @@
+const BASE_URL = "https://api-pets-localizar.herokuapp.com/service";
