@@ -1,15 +1,17 @@
+import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_pet/src/app/my_app.dart';
 import 'package:my_pet/src/app/components/app_bar.dart';
 import 'package:my_pet/src/app/components/bottom_navigator.dart';
 import 'package:my_pet/src/app/components/drawer.dart';
 import 'package:my_pet/src/app/components/floating_button.dart';
+import 'package:my_pet/src/app/components/qrcode/scan.dart' as scanner;
+import 'package:my_pet/src/app/my_app.dart';
 import 'package:my_pet/src/pages/login/login/login_view.dart';
 import 'package:my_pet/src/pages/meus_pets/meus_pets_view.dart';
-import 'package:my_pet/src/app/components/qrcode/scan.dart' as scanner;
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -27,22 +29,69 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var cardBemVindo = Card(
+            //elevation: 5.0,
+            child: new Container(
+              color: Colors.green[400],
+              alignment: Alignment.topLeft,
+              padding: new EdgeInsets.only(top: 50.0, left: 20.0),
+              height: 200,
+              //margin: new EdgeInsets.all(10.0),
+              child: new Text('Seja bem-vindo!', style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white70, fontSize: 35),),
+            ),
+          );
+
+    var spacecrafts = ["Cadastrar um pet", "xxxxxxxxx", "xxxxxxxxxx", "xxxxxxxxxx"];
+    var myGridView = GridView.builder(
+      shrinkWrap: true,
+      itemCount: spacecrafts.length,
+      gridDelegate:
+          new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return new GestureDetector(
+          child: new Card(
+            elevation: 2.0,
+            child: new Container(
+              color: Colors.green[400],
+              alignment: Alignment.center,
+              //margin: new EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0),
+              child: new Text(spacecrafts[index], style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white70, fontSize: 20)),
+            ),
+          ),
+          //onTap: () ,
+        );
+      },
+    );
+
+    var body = Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          cardBemVindo,
+          Padding(
+            padding: EdgeInsets.only(bottom: 140.0),
+            child: myGridView,
+          ),
+        ]);
+    //cardBemVindo, myGridView]);
+
     return Scaffold(
       drawer: MyDrawer(),
       //bottomNavigationBar: BottomNavigationApp(),
       appBar: MyAppBar(),
-      body: centerComponent(),
-      floatingActionButton: FloatingButton().floatingButtonHome(), 
-      );
+      body: body, //myGridView, //centerComponent(),
+      floatingActionButton: FloatingButton().floatingButtonHome(),
+      backgroundColor: Colors.green[100],
+    );
   }
 
-    @override
-    initState() {
-      super.initState();
-      this._inputController = new TextEditingController();
-      this._outputController = new TextEditingController();
-    }
-  
+  @override
+  initState() {
+    super.initState();
+    this._inputController = new TextEditingController();
+    this._outputController = new TextEditingController();
+  }
 
   Widget centerComponent() {
     return Center(

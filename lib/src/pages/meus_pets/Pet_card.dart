@@ -63,7 +63,7 @@ class PetCard extends StatelessWidget {
                 new Icon(Icons.flight_land, size: 14.0,
                   color: ColorsTheme.petDistance),
                 new Text(
-                  pet.idade, style: TextStyles.petDistance),
+                  pet.idade.toString(), style: TextStyles.petDistance),
               ],
             )
           ],
@@ -75,7 +75,7 @@ class PetCard extends StatelessWidget {
       height: 120.0,
       margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
       child: new FlatButton(
-        onPressed: () => _navigateTo(context, pet.id),
+        onPressed: () => _navigateTo(context, pet.id.toString()),
 
         child: new Stack(
           children: <Widget>[

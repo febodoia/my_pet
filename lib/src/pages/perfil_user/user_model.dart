@@ -1,5 +1,5 @@
 class User {
-  int code;
+  int id;
   String nome;
   String dataNascimento;
   String foto;
@@ -13,7 +13,7 @@ class User {
   int numero;
 
   User(
-      {this.code,
+      {this.id,
       this.nome,
       this.dataNascimento,
       this.foto,
@@ -27,7 +27,7 @@ class User {
       this.numero});
 
   User.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
+    id = json['code'];
     nome = json['nome'];
     dataNascimento = json['dataNascimento'];
     foto = json['foto'];
@@ -43,7 +43,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
+    data['code'] = this.id;
     data['nome'] = this.nome;
     data['dataNascimento'] = this.dataNascimento;
     data['foto'] = this.foto;

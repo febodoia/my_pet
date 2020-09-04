@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_pet/src/pages/meus_pets/Routes.dart';
 import 'package:my_pet/src/app/components/Theme.dart';
 import 'package:my_pet/src/pages/meus_pets/Pet_model.dart';
+import 'package:my_pet/src/pages/perfil_pet/PetDetailPage.dart';
 
 class PetCard extends StatelessWidget {
 
@@ -20,7 +21,7 @@ class PetCard extends StatelessWidget {
         child: new CircleAvatar(
           //child: Image(
           radius: 45.0,
-          backgroundImage: new AssetImage(pet.foto),
+          //backgroundImage: new AssetImage(pet.foto),
           //height: ColorsTheme.Dimens.petHeight,
           //width: ColorsTheme.Dimens.petWidth,
         ),
@@ -63,7 +64,7 @@ class PetCard extends StatelessWidget {
                 new Icon(Icons.flight_land, size: 14.0,
                   color: ColorsTheme.petDistance),
                 new Text(
-                  pet.idade, style: TextStyles.petDistance),
+                  pet.idade.toString(), style: TextStyles.petDistance),
               ],
             )
           ],
@@ -75,7 +76,13 @@ class PetCard extends StatelessWidget {
       height: 120.0,
       margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
       child: new FlatButton(
-        onPressed: () => _navigateTo(context, pet.id),
+        onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PetDetail(
+                            pet: pet,
+                          ),
+                        ),
+                      ),
 
         child: new Stack(
           children: <Widget>[

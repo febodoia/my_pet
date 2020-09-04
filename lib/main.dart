@@ -4,5 +4,5 @@ import 'package:my_pet/src/pages/meus_pets/Routes.dart';
 
 void main() {
   runApp(MyApp());
-  Routes.initRoutes();
+  //Routes.initRoutes();
 }

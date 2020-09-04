@@ -21,4 +21,13 @@ floatingButtonPet(){
         child: Icon(Icons.add),
       );
     }
+
+floatingButtonPetEdit(){
+  return FloatingActionButton(
+        backgroundColor: ColorsTheme.corPadrao,
+        tooltip: 'Editar',
+        onPressed: () {},
+        child: Icon(Icons.edit),
+      );
+    }
 }

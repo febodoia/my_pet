@@ -4,9 +4,9 @@ import 'package:my_pet/src/pages/home/home_view.dart';
 import 'package:my_pet/src/pages/login/first_page_view.dart';
 import 'package:my_pet/src/pages/login/login/login_view.dart';
 import 'package:my_pet/src/pages/meus_pets/meus_pets_bloc.dart';
-import 'package:my_pet/src/pages/meus_pets/meus_pets_module.dart';
 import 'package:my_pet/src/pages/meus_pets/meus_pets_repository.dart';
 import 'package:my_pet/src/pages/meus_pets/meus_pets_view.dart';
+import 'package:my_pet/src/pages/meus_pets/teste.dart';
 import 'package:my_pet/src/pages/perfil_user/perfil_user_view.dart';
 import 'package:my_pet/src/app/components/Theme.dart';
 import 'package:my_pet/src/app/components/floating_button.dart';
@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocProvider(
       blocs: [
-        Bloc((i) => MeusPetsBloc(MeusPetsModule.to.getDependency<PetRepository>()))
       ],
           child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -57,6 +56,7 @@ class _MyAppState extends State<MyApp> {
           '/meus_pets': (context) => MeusPets(),
           '/perfiluser': (context) => PerfilUser(),
           '/qrcode': (context) => QrCode(),
+          '/teste': (context) => PetsPage(),
         },
       ),
     );

@@ -43,7 +43,7 @@ class MyDrawer extends StatelessWidget {
             leading: new Icon(Icons.person),
             title: new Text("Perfil"),
             onTap: () {
-              Navigator.pushNamed(context, '/perfiluser');
+              Navigator.pushNamed(context, '/perfiluser'); //'/teste');
             },
           ),
           new ListTile(

@@ -1,106 +1,178 @@
 import 'package:flutter/material.dart';
 import 'package:my_pet/src/app/components/app_bar.dart';
-import 'package:my_pet/src/app/components/bottom_navigator.dart';
-import 'package:my_pet/src/app/components/drawer.dart';
 import 'package:my_pet/src/app/components/floating_button.dart';
+import 'package:my_pet/src/pages/perfil_user/user_model.dart';
+import 'package:my_pet/src/service/http_service.dart';
 
 class PerfilUser extends StatefulWidget {
+  
+  final User user;
+  PerfilUser({@required this.user});
+
   @override
   _PerfilUserState createState() => _PerfilUserState();
 }
 
 class _PerfilUserState extends State<PerfilUser> {
 
-  Widget _body = Center(
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            new Card(
-              elevation: 50.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Column(
+  Future<User> futureUser;
+
+  @override
+  void initState() {
+    super.initState();
+    futureUser = httpService.getUser();
+  }
+
+  final HttpService httpService = HttpService();
+
+
+
+@override
+  Widget build(BuildContext context) {
+
+    
+    _body2(){
+      return FutureBuilder<User>(
+        future: futureUser,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+              return SingleChildScrollView( 
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: <Widget>[
+                Card(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          radius: 80.0,
-                          backgroundImage: AssetImage('assets/images/user.jpg'),
-                        ),
+                      ListTile(
+                        title: Text("Nome"),
+                        subtitle: Text(snapshot.data.nome),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Fernando Bodoia',
-                          style: TextStyle(
-                              fontSize:
-                                  16), //'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'
-                        ),
+                      ListTile(
+                        title: Text("E-mail"),
+                        subtitle: Text(snapshot.data.email),
+                      ),
+                      ListTile(
+                        title: Text("Senha"),
+                        subtitle: Text(snapshot.data.password),
+                      ),
+                      ListTile(
+                        title: Text("ID"),
+                        subtitle: Text(snapshot.data.id.toString()),
+                      ),
+                      ListTile(
+                        title: Text("Celular"),
+                        subtitle: Text(snapshot.data.celular),
+                      ),
+                      ListTile(
+                        title: Text("Data de Nascimento"),
+                        subtitle: Text("${snapshot.data.dataNascimento}"),
+                      ),
+                      ListTile(
+                        title: Text("Logradouro"),
+                        subtitle: Text(snapshot.data.logradouro.toString()),
+                      ),
+                      ListTile(
+                        title: Text("CEP"),
+                        subtitle: Text(snapshot.data.cep.toString()),
+                      ),
+                      ListTile(
+                        title: Text("Estado"),
+                        subtitle: Text(snapshot.data.estado.toString()),
+                      ),
+                      ListTile(
+                        title: Text("Cidade"),
+                        subtitle: Text(snapshot.data.cidade.toString()),
+                      ),
+                      ListTile(
+                        title: Text("Número"),
+                        subtitle: Text(snapshot.data.numero.toString()),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 400,
-              height: 468.0,
-              child: new Card(
-                elevation: 50.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            'Nome: Fernando Bodoia',
-                            style: TextStyle(
-                                fontSize:
-                                    16), //'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'
-                          ),
-                        ),
-
-                        Container(
-                          child: Text(
-                            'Email: fernandobodoia@gmail.com',
-                            style: TextStyle(
-                                fontSize:
-                                    16), //'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'
-                          ),
-                        ),
-
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Senha: *********',
-                            style: TextStyle(
-                                fontSize:
-                                    16), //'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius sagittis mauris sed pharetra. Nam eget imperdiet dolor, eu pellentesque tortor. Donec tempus finibus diam, volutpat consectetur neque laoreet sed. Proin iaculis lectus nisl, vitae eleifend nisi sollicitudin at.'
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      );
+          ),
+        );
+          } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        });
+    }
+  
+    
 
-  @override
-  Widget build(BuildContext context) {
+  // _body(){
+  //   return SingleChildScrollView( 
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(12.0),
+  //           child: Column(
+  //             children: <Widget>[
+  //               Card(
+  //                 child: Column(
+  //                   crossAxisAlignment: CrossAxisAlignment.center,
+  //                   children: <Widget>[
+  //                     ListTile(
+  //                       title: Text("Nome"),
+  //                       subtitle: Text("${user.nome}"),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("E-mail"),
+  //                       subtitle: Text(user.email),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Senha"),
+  //                       subtitle: Text(user.password),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("ID"),
+  //                       subtitle: Text(user.id.toString()),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Celular"),
+  //                       subtitle: Text(user.celular),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Data de Nascimento"),
+  //                       subtitle: Text("${user.dataNascimento}"),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Logradouro"),
+  //                       subtitle: Text("${user.logradouro}"),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("CEP"),
+  //                       subtitle: Text(user.cep),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Estado"),
+  //                       subtitle: Text(user.estado),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Cidade"),
+  //                       subtitle: Text(user.cidade),
+  //                     ),
+  //                     ListTile(
+  //                       title: Text("Número"),
+  //                       subtitle: Text("${user.numero}"),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  // }
+  
     return Scaffold(
-      drawer: MyDrawer(),
-      //bottomNavigationBar: BottomNavigationApp(),
       appBar: MyAppBar(),
-      body: _body,
+      floatingActionButton: FloatingButton().floatingButtonPetEdit(),
+      body: _body2(),
     );
   }
 }
