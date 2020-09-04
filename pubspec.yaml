@@ -18,12 +18,19 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   carousel_slider: ^2.0.0
   fluro: "^1.1.0"
   flare_flutter: ^2.0.3
+  qrscan: 
+  image_gallery_saver: ^1.1.0
+  image_picker: ^0.6.1+4
+  rxdart: ^0.22.1+1
+  bloc_pattern: ^2.2.3
+  dio: ^3.0.10
+  http: 
   
   flutter:
     sdk: flutter
@@ -55,6 +62,7 @@ flutter:
     - assets/images/dog2.jpg
     - assets/images/dog3.jpg
     - assets/images/dog4.jpg
+    - assets/images/bg_login.jpeg
     - assets/navbar.flr
     
   #   - images/a_dot_ham.jpeg
