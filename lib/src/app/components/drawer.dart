@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_pet/src/pages/login/first_page_view.dart';
 import 'package:my_pet/src/app/components/Theme.dart';
-import 'package:my_pet/src/pages/perfil_user/perfil_user_bloc.dart';
-import 'package:my_pet/src/pages/perfil_user/user_model.dart';
+import 'package:my_pet/src/view/perfil_user/perfil_user_bloc.dart';
 
 class MyDrawer extends StatelessWidget {
 

@@ -31,7 +31,8 @@ dependencies:
   bloc_pattern: ^2.2.3
   dio: ^3.0.10
   http: 
-  
+  flutter_speed_dial:
+
   flutter:
     sdk: flutter
 

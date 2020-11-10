@@ -1,16 +1,14 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:my_pet/src/pages/home/home_view.dart';
-import 'package:my_pet/src/pages/login/first_page_view.dart';
-import 'package:my_pet/src/pages/login/login/login_view.dart';
-import 'package:my_pet/src/pages/meus_pets/meus_pets_bloc.dart';
-import 'package:my_pet/src/pages/meus_pets/meus_pets_repository.dart';
-import 'package:my_pet/src/pages/meus_pets/meus_pets_view.dart';
-import 'package:my_pet/src/pages/meus_pets/teste.dart';
-import 'package:my_pet/src/pages/perfil_user/perfil_user_view.dart';
-import 'package:my_pet/src/app/components/Theme.dart';
-import 'package:my_pet/src/app/components/floating_button.dart';
-import 'package:my_pet/src/app/components/qrcode/qrcode_page.dart';
+import 'package:my_pet/src/view/home/home_view.dart';
+import 'package:my_pet/src/view/login/first_page_view.dart';
+import 'package:my_pet/src/view/meus_pets/meus_pets_view.dart';
+import 'package:my_pet/src/view/meus_pets/perfil_pet/add_pet/add_pet.dart';
+import 'package:my_pet/src/view/meus_pets/perfil_pet/edit_pet/edit_pet.dart';
+import 'package:my_pet/src/view/meus_pets/teste.dart';
+import 'package:my_pet/src/view/perfil_user/edit_user/edit_user.dart';
+import 'package:my_pet/src/view/perfil_user/perfil_user_view.dart';
+import 'package:my_pet/src/view/qrcode/qr_code_view.dart';
+import 'package:my_pet/src/view/qrcode/qrcode_page.dart';
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -27,10 +25,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      blocs: [
-      ],
-          child: MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'MyPet',
         theme: ThemeData(
@@ -57,9 +52,12 @@ class _MyAppState extends State<MyApp> {
           '/perfiluser': (context) => PerfilUser(),
           '/qrcode': (context) => QrCode(),
           '/teste': (context) => PetsPage(),
+          '/add_pet': (context) => AddPet(),
+          '/edit_pet': (context) => EditPet(),
+          '/edit_user': (context) => EditUser(),
+          '/qrcodepage': (context) => QrCodePage(),
         },
-      ),
-    );
+      );
   }
 
 }

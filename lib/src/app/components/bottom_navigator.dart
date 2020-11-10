@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_pet/src/app/components/Theme.dart';
-import 'package:my_pet/src/pages/home/home_view.dart';
-import 'package:my_pet/src/pages/meus_pets/meus_pets_view.dart';
-import 'package:my_pet/src/pages/perfil_user/perfil_user_view.dart';
+import 'package:my_pet/src/view/home/home_view.dart';
+import 'package:my_pet/src/view/meus_pets/meus_pets_view.dart';
+import 'package:my_pet/src/view/perfil_user/perfil_user_view.dart';
 
 class BottomNavigationApp extends StatefulWidget {
   _BottomNavigationAppState createState() => _BottomNavigationAppState();
